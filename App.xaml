@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application
+    x:Class="DnevniCitati.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#315C4B</Color>
+            <Color x:Key="PageColor">#F5F6F2</Color>
+            <Color x:Key="CardColor">#FFFFFF</Color>
+            <Color x:Key="TextColor">#1F2924</Color>
+            <Color x:Key="MutedColor">#68756D</Color>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

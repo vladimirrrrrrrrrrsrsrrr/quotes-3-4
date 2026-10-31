@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DnevniCitati.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Dnevni citati"
+    BackgroundColor="{StaticResource PageColor}">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="18" RowSpacing="12">
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="Dnevni citati"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource PrimaryColor}" />
+            <Label Text="Mala doza inspiracije za svaki dan."
+                   FontSize="14"
+                   TextColor="{StaticResource MutedColor}" />
+        </VerticalStackLayout>
+
+        <SearchBar Grid.Row="1"
+                   x:Name="SearchInput"
+                   Placeholder="Pretraži citat ili autora..."
+                   TextChanged="OnSearchTextChanged"
+                   BackgroundColor="White" />
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Picker x:Name="CategoryPicker"
+                    Title="Sve kategorije"
+                    SelectedIndexChanged="OnCategoryChanged"
+                    BackgroundColor="White">
+                <Picker.Items>
+                    <x:String>Sve kategorije</x:String>
+                    <x:String>Vera</x:String>
+                    <x:String>Sport</x:String>
+                    <x:String>Život</x:String>
+                    <x:String>Ljubav</x:String>
+                </Picker.Items>
+            </Picker>
+            <Button Grid.Column="1"
+                    x:Name="FavoritesButton"
+                    Text="♡ Omiljeni"
+                    Clicked="OnFavoritesClicked"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    TextColor="White"
+                    CornerRadius="12" />
+        </Grid>
+
+        <Grid Grid.Row="3" RowDefinitions="Auto,*" RowSpacing="8">
+            <Label x:Name="StatusLabel"
+                   Grid.Row="0"
+                   Text="Učitavanje citata..."
+                   TextColor="{StaticResource MutedColor}" />
+            <CollectionView x:Name="QuotesList"
+                            Grid.Row="1"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,4"
+                                Padding="15"
+                                BackgroundColor="{StaticResource CardColor}"
+                                Stroke="#E1E6E0"
+                                StrokeShape="RoundRectangle 16">
+                            <VerticalStackLayout Spacing="9">
+                                <Label Text="{Binding Category, StringFormat='#{0}'}"
+                                       FontSize="12"
+                                       TextColor="{StaticResource PrimaryColor}"
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding Text}"
+                                       FontSize="18"
+                                       TextColor="{StaticResource TextColor}"
+                                       LineBreakMode="WordWrap" />
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                    <Label Text="{Binding Author, StringFormat='— {0}'}"
+                                           FontSize="13"
+                                           TextColor="{StaticResource MutedColor}"
+                                           VerticalOptions="Center" />
+                                    <Button Grid.Column="1"
+                                            Text="{Binding FavoriteButtonText}"
+                                            Clicked="OnFavoriteClicked"
+                                            CommandParameter="{Binding .}"
+                                            FontSize="20"
+                                            Padding="8,2"
+                                            BackgroundColor="#EEF3EF"
+                                            TextColor="{StaticResource PrimaryColor}"
+                                            CornerRadius="10" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
+</ContentPage>
